@@ -5,13 +5,12 @@ import { getToken } from '@/utils/auth'
 
 // create an axios instance
 const service = axios.create({
-  baseURL: 'https://api.cat-shop.penkuoer.com', // url = base url + request url
+  baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000, // request timeout
-  headers: { 'Content-Type': 'application/json' }
+  timeout: 5000 // request timeout
 })
 
-// ajax请求request拦截
+// request interceptor
 service.interceptors.request.use(
   config => {
     // do something before request is sent
@@ -20,7 +19,7 @@ service.interceptors.request.use(
       // let each request carry token
       // ['X-Token'] is a custom headers key
       // please modify it according to the actual situation
-      config.headers['authorization'] = 'Bearer ' + getToken()
+      config.headers['X-Token'] = getToken()
     }
     return config
   },
@@ -31,12 +30,12 @@ service.interceptors.request.use(
   }
 )
 
-// ajax请求相应拦截
+// response interceptor
 service.interceptors.response.use(
   /**
    * If you want to get http information such as headers or status
    * Please return  response => response
-   */
+  */
 
   /**
    * Determine the request status by custom code
@@ -45,8 +44,7 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    return res
-    /*
+
     // if the custom code is not 20000, it is judged as an error.
     if (res.code !== 20000) {
       Message({
@@ -58,15 +56,11 @@ service.interceptors.response.use(
       // 50008: Illegal token; 50012: Other clients logged in; 50014: Token expired;
       if (res.code === 50008 || res.code === 50012 || res.code === 50014) {
         // to re-login
-        MessageBox.confirm(
-          'You have been logged out, you can cancel to stay on this page, or log in again',
-          'Confirm logout',
-          {
-            confirmButtonText: 'Re-Login',
-            cancelButtonText: 'Cancel',
-            type: 'warning'
-          }
-        ).then(() => {
+        MessageBox.confirm('You have been logged out, you can cancel to stay on this page, or log in again', 'Confirm logout', {
+          confirmButtonText: 'Re-Login',
+          cancelButtonText: 'Cancel',
+          type: 'warning'
+        }).then(() => {
           store.dispatch('user/resetToken').then(() => {
             location.reload()
           })
@@ -76,7 +70,6 @@ service.interceptors.response.use(
     } else {
       return res
     }
-    */
   },
   error => {
     console.log('err' + error) // for debug
@@ -88,26 +81,5 @@ service.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
-export function get(url, params) {
-  return service.get(url, {
-    params
-  })
-}
-
-export function post(url, params) {
-  return service.post(url, params)
-}
-export function put(id, params) {
-  return service.put(id, params)
-}
-
-export function deleteOne(id) {
-  return service.delete(id)
-}
-
-export function deleted(url, params) {
-  return service.delete(url, params)
-}
 
 export default service

@@ -1,4 +1,4 @@
-import Mock from 'mockjs'
+const Mock = require('mockjs')
 
 const data = Mock.mock({
   'items|30': [{
@@ -11,9 +11,9 @@ const data = Mock.mock({
   }]
 })
 
-export default [
+module.exports = [
   {
-    url: '/table/list',
+    url: '/vue-admin-template/table/list',
     type: 'get',
     response: config => {
       const items = data.items

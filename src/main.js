@@ -1,5 +1,4 @@
 import Vue from 'vue'
-import moment from 'moment'
 
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 
@@ -22,22 +21,20 @@ import '@/permission' // permission control
  * you can execute: mockXHR()
  *
  * Currently MockJs will be used in the production environment,
- * please remove it before going online! ! !
+ * please remove it before going online ! ! !
  */
-import { mockXHR } from '../mock'
 if (process.env.NODE_ENV === 'production') {
+  const { mockXHR } = require('../mock')
   mockXHR()
 }
 
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
+// 如果想要中文版 element-ui，按如下方式声明
+// Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-// 全局过滤器
-// 格式化日期
-Vue.filter('fmtDate', (value, fmtString) => {
-  return moment(value).format(fmtString)
-})
+
 new Vue({
   el: '#app',
   router,
