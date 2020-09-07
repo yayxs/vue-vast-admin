@@ -1,50 +1,25 @@
 {
-  "name": "vue-element-admin-learn",
+  "name": "demo",
   "version": "0.1.0",
   "private": true,
-  "author": "yayxs",
-  "participants": [],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "inspect": "vue-cli-service inspect",
-    "plop":"plop"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yayxs/vue-element-admin-learn.git"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,vue}": [
-      "eslint --fix",
-      "git add"
-    ]
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
-    "vue": "^2.6.11",
-    "vue-router": "^3.4.3"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
+    "@babel/register": "^7.11.5",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
-    "@vue/eslint-config-prettier": "^6.0.0",
-    "autoprefixer": "^9.8.6",
     "babel-eslint": "^10.1.0",
-    "cross-env": "^7.0.2",
     "eslint": "^6.7.2",
-    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-vue": "^6.2.2",
-    "plop": "^2.7.4",
-    "sass": "^1.26.10",
-    "sass-loader": "^9.0.3",
+    "mockjs": "^1.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
@@ -52,9 +27,18 @@
     "env": {
       "node": true
     },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
     "parserOptions": {
       "parser": "babel-eslint"
     },
     "rules": {}
-  }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ]
 }

@@ -1,28 +1,24 @@
-<!--
- * @Author: your name
- * @Date: 2020-08-15 18:43:55
- * @LastEditTime: 2020-08-16 21:42:51
- * @LastEditors: yayxs
- * @Description: In User Settings Edit
- * @FilePath: \vue-element-admin-learn\src\App.vue
--->
 <template>
-  <div id="app">
-    <!-- 路由渲染的出口 -->
-    <router-view></router-view>
-  </div>
+  <div id="app"></div>
 </template>
 
 <script>
 export default {
   name: "App",
   components: {},
+  created() {
+    console.log(process.env.NODE_ENV);
+  },
 };
 </script>
 
-<style lang="scss" scoped>
-$color: red;
+<style>
 #app {
-  color: $color;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
