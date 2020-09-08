@@ -1,18 +1,9 @@
-const { devPort } = require("./src/settings");
-/**
- * 配置代理
- */
+const path = require("path");
+const defaultSettings = require("./src/settings");
 
-module.exports = {
-  configureWebpack: {
-    devtool: "source-map",
-  },
-  devServer: {
-    hot: true,
-    port: devPort,
-    after: mockServer(),
-  },
-};
+function resolve(dir) {
+  return path.join(__dirname, dir);
+}
 /**
  *
  * @param
@@ -34,3 +25,25 @@ function mockServer() {
     };
   }
 }
+
+module.exports = {
+  publicPath: defaultSettings.publicPath,
+  assetsDir: defaultSettings.assetsDir,
+  outputDir: defaultSettings.outputDir,
+  lintOnSave: defaultSettings.lintOnSave,
+  // transpileDependencies,
+  // 重点是  webpack 的配置
+  devServer: {
+    // proxy: 'http://localhost:4000' // 代理
+    hot: defaultSettings.devServerHot,
+    port: defaultSettings.devServerPort,
+    open: true,
+    noInfo: false, // 告诉开发服务器禁止显示诸如Webpack捆绑包信息之类的消息。错误和警告仍将显示
+    overlay: {
+      // 出现编译器错误或警告时，在浏览器中显示全屏覆盖。如果只想显示编译器错误
+      warnings: true,
+      errors: true,
+    },
+    after: mockServer(),
+  },
+};

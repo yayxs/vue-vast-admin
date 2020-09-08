@@ -1,13 +1,25 @@
 <template>
-  <div id="app"></div>
+  <div id="app">
+    <button @click="handleClick"></button>
+  </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "App",
   components: {},
-  created() {
-    console.log(process.env.NODE_ENV);
+  mounted() {},
+  methods: {
+    handleClick() {
+      axios("/veal/user/login")
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 };
 </script>
