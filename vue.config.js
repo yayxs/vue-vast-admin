@@ -1,7 +1,9 @@
 const path = require("path");
 const defaultSettings = require("./src/settings");
 
-function resolve(dir) {
+const name = defaultSettings.name || "veal";
+
+function resolveDir(dir) {
   return path.join(__dirname, dir);
 }
 /**
@@ -30,7 +32,7 @@ module.exports = {
   publicPath: defaultSettings.publicPath,
   assetsDir: defaultSettings.assetsDir,
   outputDir: defaultSettings.outputDir,
-  lintOnSave: defaultSettings.lintOnSave,
+  lintOnSave: process.env.NODE_ENV === "development", // 开发环境下
   // transpileDependencies,
   // 重点是  webpack 的配置
   devServer: {
@@ -45,5 +47,16 @@ module.exports = {
       errors: true,
     },
     after: mockServer(),
+  },
+  configureWebpack: {
+    // provide the app's title in webpack's name field, so that
+    // it can be accessed in index.html to inject the correct title.
+    name,
+    resolve: {
+      // 配置路径别名
+      alias: {
+        "@": resolveDir("src"),
+      },
+    },
   },
 };

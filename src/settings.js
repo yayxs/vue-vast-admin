@@ -20,6 +20,7 @@ module.exports = {
   // 请求的基本Url
   //是否依据mock数据生成webstorm HTTP Request请求文件
   httpRequestFile: false,
+  name: "",
   baseURL:
     process.env.NODE_ENV === "development" || process.env.NODE_ENV === "preview"
       ? "yy-mock-server"

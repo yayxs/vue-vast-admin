@@ -1,0 +1,10 @@
+// 侧边栏
+// 宽度210px
+$sideBarWidth: 210px;
+// 侧边栏的颜色
+$menuBg: #304156;
+// How to Share Variables Between Javascript and Sass
+:export {
+  sideBarWidth: $sideBarWidth;
+  menuBg: $menuBg;
+}

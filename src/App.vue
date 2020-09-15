@@ -1,24 +1,21 @@
 <template>
   <div id="app">
-    <button @click="handleClick"></button>
+    <Layout />
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import { login } from "@/api/user";
+import Layout from "@/layout";
 export default {
   name: "App",
-  components: {},
+  components: { Layout },
   mounted() {},
   methods: {
     handleClick() {
-      axios("/veal/user/login")
-        .then((res) => {
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      login({ username: "admin", password: "123456" }).then((res) => {
+        console.log(res);
+      });
     },
   },
 };
