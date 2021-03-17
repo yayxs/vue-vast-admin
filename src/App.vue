@@ -1,10 +1,18 @@
 <template>
   <div>
-    app
+    <!-- <router-view /> -->
+    <tags-view></tags-view>
   </div>
 </template>
-<script lang="ts">
+
+<script>
+import TagsView from "./layout/components/TagsView/index";
 export default {
-  
-}
+  name: "App",
+  components: {
+    TagsView,
+  },
+};
 </script>
+
+<style lang="scss" scoped></style>
