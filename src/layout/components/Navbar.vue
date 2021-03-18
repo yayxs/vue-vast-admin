@@ -1,13 +1,12 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div class="navbar-container">
+    navbar
   </div>
 </template>
 
 <script>
 export default {
-  name: "App",
-  components: {},
+  name: "Navbar",
 };
 </script>
 
