@@ -42,9 +42,10 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {defineComponent } from 'vue'
 import { validUsername } from "@/utils/validate.js";
-export default {
+export default defineComponent({
   data() {
     // 校验用户名
     const validateUsername = (rule, value, callback) => {
@@ -108,6 +109,6 @@ export default {
     },
   },
   mounted() {},
-};
+})
 </script>
 <style scoped lang="scss"></style>
